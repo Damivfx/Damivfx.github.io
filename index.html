@@ -853,7 +853,7 @@
 <h3>Envíame un mensaje</h3>
 <p>Completa el formulario y me pondré en contacto contigo lo antes posible.</p>
 </div>
-<form id="contactForm">
+<form id="contactForm" action="https://formspree.io/f/mjkralvd" method="POST">
 <div class="form-group">
 <label class="form-label" for="name">Nombre</label>
 <input class="form-control" id="name" required="" type="text"/>
@@ -973,32 +973,27 @@
                     // Update active link
                     document.querySelectorAll('.nav-link').forEach(link => {
                         link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + sectionId) {
+                            link.classList.add('active');
+                        }
                     });
-                    if (this.classList.contains('nav-link')) {
-                        this.classList.add('active');
-                    }
                 }
             });
         });
         
-        // Form submission
+        // No longer need this JavaScript block as Formspree handles the submission
+        /*
         const contactForm = document.getElementById('contactForm');
-        
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
-            
-            // En una aplicación real, enviarías estos datos a un servidor
-            // Para fines de demostración, solo mostraremos una alerta
             alert(`¡Gracias, ${name}! Tu mensaje ha sido recibido. Me pondré en contacto contigo pronto.`);
-            
-            // Resetear formulario
             contactForm.reset();
         });
+        */
         
         // Update active nav link on scroll
         window.addEventListener('scroll', () => {
