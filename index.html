@@ -856,19 +856,19 @@
 <form id="contactForm" action="https://formspree.io/f/mjkralvd" method="POST">
 <div class="form-group">
 <label class="form-label" for="name">Nombre</label>
-<input class="form-control" id="name" required="" type="text"/>
+<input class="form-control" id="name" name="nombre" required="" type="text"/>
 </div>
 <div class="form-group">
 <label class="form-label" for="email">Email</label>
-<input class="form-control" id="email" required="" type="email"/>
+<input class="form-control" id="email" name="email" required="" type="email"/>
 </div>
 <div class="form-group">
 <label class="form-label" for="subject">Asunto</label>
-<input class="form-control" id="subject" required="" type="text"/>
+<input class="form-control" id="subject" name="asunto" required="" type="text"/>
 </div>
 <div class="form-group">
 <label class="form-label" for="message">Mensaje</label>
-<textarea class="form-control" id="message" required=""></textarea>
+<textarea class="form-control" id="message" name="mensaje" required=""></textarea>
 </div>
 <button class="btn-primary" type="submit">Enviar Mensaje</button>
 </form>
@@ -973,34 +973,24 @@
                     // Update active link
                     document.querySelectorAll('.nav-link').forEach(link => {
                         link.classList.remove('active');
-                        if (link.getAttribute('href') === '#' + sectionId) {
-                            link.classList.add('active');
+                        // No need for 'sectionId' here, it's about the clicked link itself
+                        if (this.classList.contains('nav-link')) { 
+                            this.classList.add('active');
                         }
                     });
                 }
             });
         });
         
-        // No longer need this JavaScript block as Formspree handles the submission
-        /*
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            alert(`¡Gracias, ${name}! Tu mensaje ha sido recibido. Me pondré en contacto contigo pronto.`);
-            contactForm.reset();
-        });
-        */
+        // Removed the previous custom form submission JavaScript
+        // Formspree now handles the submission directly via the form's action attribute.
         
         // Update active nav link on scroll
         window.addEventListener('scroll', () => {
             const scrollPosition = window.scrollY;
             
             document.querySelectorAll('section').forEach(section => {
-                const sectionTop = section.offsetTop - 100;
+                const sectionTop = section.offsetTop - 100; // Adjusted for fixed header
                 const sectionHeight = section.offsetHeight;
                 const sectionId = section.getAttribute('id');
                 
